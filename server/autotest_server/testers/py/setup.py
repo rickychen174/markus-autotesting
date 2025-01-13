@@ -12,6 +12,9 @@ def create_environment(settings_, env_dir, _default_env_dir):
     pip = os.path.join(env_dir, "bin", "pip")
     subprocess.run([f"python{python_version}", "-m", "venv", "--clear", env_dir], check=True)
     subprocess.run([pip, "install", "-r", requirements, *pip_requirements], check=True)
+    if env_data.get("pip_requirements_file"):
+        pip_requirements_file = os.path.join(env_dir, "../", "files", env_data.get("pip_requirements_file"))
+        subprocess.run([pip, "install", "-r", pip_requirements_file], check=True)
     return {"PYTHON": os.path.join(env_dir, "bin", "python3")}
 
 
