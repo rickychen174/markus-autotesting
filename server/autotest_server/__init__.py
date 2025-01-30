@@ -69,7 +69,7 @@ def _create_test_group_result(
         "annotations": None,
         "feedback": feedback,
         "tags": None,
-        "overall_comment": None
+        "overall_comment": None,
     }
     for res in all_results:
         if "annotations" in res:
