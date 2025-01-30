@@ -68,7 +68,7 @@ def _create_test_group_result(
         "extra_info": extra_info or {},
         "annotations": None,
         "feedback": feedback,
-        "tags": [],
+        "tags": None,
         "overall_comment": None
     }
     for res in all_results:
