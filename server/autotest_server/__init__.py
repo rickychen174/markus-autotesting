@@ -68,10 +68,16 @@ def _create_test_group_result(
         "extra_info": extra_info or {},
         "annotations": None,
         "feedback": feedback,
+        "tags": None,
+        "overall_comment": None,
     }
     for res in all_results:
         if "annotations" in res:
             result["annotations"] = res["annotations"]
+        elif "tags" in res:
+            result["tags"] = res["tags"]
+        elif "overall_comment" in res:
+            result["overall_comment"] = res["overall_comment"]
         else:
             result["tests"].append(res)
 
