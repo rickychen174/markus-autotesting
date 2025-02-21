@@ -14,12 +14,12 @@ with open(input_notebook, "r") as file:
             source = cell["source"]
             if len(source) > 0 and source[0].startswith("# Question"):
                 # Cell header for file names
-                image_name = source[0][2:-1].replace(" ", "_")
+                question_name = source[0][2:-1].replace(" ", "_")
             elif "markus_saved_image" in cell["metadata"]:
                 # Cell metadata tag for saved image file name
-                image_name = cell["metadata"]["markus_saved_image"]
+                question_name = cell["metadata"]["markus_saved_image"]
             else:
-                image_name = "image"
+                continue
 
             # Find images and save them
             image_count = 0
@@ -27,8 +27,9 @@ with open(input_notebook, "r") as file:
                 for file_type, data in output["data"].items():
                     if "image/png" in file_type:
                         ext = file_type.split("/")[-1]
-                        image_filename = f"{image_name}_{image_count}.{ext}"
-                        image_path = os.path.join(output_directory, image_filename)
+                        image_filename = f"submission_{image_count}"
+                        os.makedirs(os.path.join(output_directory, question_name), exist_ok=True)
+                        image_path = os.path.join(output_directory, question_name, image_filename)
                         image_count += 1
 
                         image_data = base64.b64decode(data)
@@ -38,7 +39,8 @@ with open(input_notebook, "r") as file:
             # Save question context (source of previous cell)
             if cell_number >= 1 and notebook["cells"][cell_number - 1]["cell_type"] == "markdown":
                 question_context_data = "".join(notebook["cells"][cell_number - 1]["source"])
-                question_context_filename = f"{image_name}.txt"
-                question_context_path = os.path.join(output_directory, question_context_filename)
+                question_context_filename = "context.txt"
+                os.makedirs(os.path.join(output_directory, question_name), exist_ok=True)
+                question_context_path = os.path.join(output_directory, question_name, question_context_filename)
                 with open(question_context_path, "w") as txt_file:
                     txt_file.write(question_context_data)
