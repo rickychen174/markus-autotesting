@@ -1,5 +1,0 @@
-## Task 5
-
-The tick marks on the horizontal axes of `time_boxplots` are not informative unless the viewer knows which age group each value represents.  Fix labels of boxplot by recoding `Age group` using the labels in the code book (see `gss_tu2016_codebook.txt`).
-
-a) First, create a copy of `well_balanced_df` (using the DataFrame `.copy()` method), and store it in a variable called `well_balanced_age_label_df`. For that new DataFrame, recode `Age group` by adding a column called `Age group label` with the Age group labels found in the code book.

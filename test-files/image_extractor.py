@@ -25,11 +25,11 @@ with open(input_notebook, "r") as file:
             image_count = 0
             for output in cell["outputs"]:
                 for file_type, data in output["data"].items():
-                    if "image/png" in file_type:
+                    if "image/" in file_type:
                         ext = file_type.split("/")[-1]
-                        image_filename = f"submission_{image_count}"
-                        os.makedirs(os.path.join(output_directory, question_name), exist_ok=True)
-                        image_path = os.path.join(output_directory, question_name, image_filename)
+                        image_filename = f"submission.{ext}"
+                        os.makedirs(os.path.join(output_directory, question_name, str(image_count)), exist_ok=True)
+                        image_path = os.path.join(output_directory, question_name, str(image_count), image_filename)
                         image_count += 1
 
                         image_data = base64.b64decode(data)

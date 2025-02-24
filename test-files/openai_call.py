@@ -1,5 +1,7 @@
 import base64
+
 from openai import OpenAI
+import glob
 import os
 
 client = OpenAI()
@@ -57,9 +59,8 @@ def prompt_compare_images_mock(submission_image_path, solution_image_path):
 
 output_directory = "output_images"
 for question in os.listdir(output_directory):
-    prompt_compare_images_mock(
-        os.path.join(output_directory, question, "submission"), os.path.join(output_directory, question, "solution")
-    )
-
-
-print(prompt_compare_images_mock().choices[0].message)
+    for image_number in os.listdir(os.path.join(output_directory, question)):
+        if image_number != "context.txt":
+            submission_image_path = glob.glob(os.path.join(output_directory, question, image_number, "submission.*"))[0]
+            solution_image_path = glob.glob(os.path.join(output_directory, question, image_number, "solution.*"))[0]
+            prompt_compare_images_mock(submission_image_path, solution_image_path)
