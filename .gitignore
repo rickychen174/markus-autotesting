@@ -9,3 +9,5 @@ __pycache__
 venv
 venv2
 build
+
+test_venv/
