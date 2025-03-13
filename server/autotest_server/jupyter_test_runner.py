@@ -18,7 +18,7 @@ def merge_ipynb_files(test_file: str, submission_file: str):
 def run_jupyter_tests(test_file: str) -> List[Dict]:
     plugin = JupyterPlugin()
     pytest.main([test_file], plugins=["notebook_helper.pytest.notebook_collector_plugin", plugin])
-    # os.unlink(test_file)
+    os.unlink(test_file)
 
 
 run_jupyter_tests(merge_ipynb_files("Homework_5_test_patched.ipynb", "Homework_5_submission_patched.ipynb"))
