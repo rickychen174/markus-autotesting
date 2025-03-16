@@ -8,6 +8,7 @@ All notable changes to this project will be documented here.
 - Update "setting up test environment" message with http response of status code 503 (#589)
 - Change rlimit resource settings to apply each worker individually (#587) 
 - Improve error reporting with handled assertion errors (#591)
+- Add custom pytest markers to Python tester to record MarkUs metadata (#592)
 
 ## [v2.6.0]
 - Update python versions in docker file (#568)
