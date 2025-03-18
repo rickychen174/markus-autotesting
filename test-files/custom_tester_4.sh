@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo '{"annotations": [{"filename": "submission.py", "content": "Message 1!", "line_start": 3, "line_end": 5, "column_start": 1, "column_end": 4}, {"filename": "submission.py", "content": "Message 2!", "line_start": 6, "line_end": 9, "column_start": 1, "column_end": 4}]}{"name": "Custom Test 4", "output": "Perfect!", "marks_earned": 100, "marks_total": 100, "status": "pass", "time": 1}{"overall_comment": "Test 4 Comment 1!"}{"tags": [{"name": "Tag1", "description": "description1"}, {"name": "Tag2", "description": "description2"}]}'
