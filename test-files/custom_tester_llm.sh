@@ -1,4 +1,7 @@
 #!/bin/bash
 
-pip3 install -r ai-autograding-feedback/requirements.txt
-python3 custom_tester_helper.py
+source ../../scripts/defaultvenv/bin/activate
+cd ai-autograding-feedback
+llm_output=$(../../../scripts/defaultvenv/bin/python3 main.py --submission_type jupyter --prompt image_analyze --scope image --assignment ../ --question "Question 5b" --model openai --output stdout)
+escaped_llm_output=$(echo "$llm_output" | sed 's/"/\\"/g')
+echo {\"overall_comment\": \"${escaped_llm_output}\"}
